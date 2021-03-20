@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300")
+
+@font-face {
+    font-family: 'rodusround700';
+    src: url('rodus/rodusround700-webfont.eot');
+    src: url('rodus/rodusround700-webfont.eot?#iefix') format('embedded-opentype'),
+         url('rodus/rodusround700-webfont.woff2') format('woff2'),
+         url('rodus/rodusround700-webfont.woff') format('woff'),
+         url('rodus/rodusround700-webfont.ttf') format('truetype'),
+         url('rodus/rodusround700-webfont.svg#rodusround700bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	min-height: 100vh;
+	flex-direction: column;
+
+}
+
+p {
+  line-height: 1.5;
+  margin: 10px 0;
+  color: #000;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: rodusround700;
+  font-weight: 800;
+}
+
+h1 {
+	font-size: 8vw;
+	color: #93C72A;
+}
+
+h2 {
+	font-size: 20vw;
+	color: #4FA88D;
+	text-align: center;
+	/*vertical-align: top;*/
+}
+
+h2.green {
+	color: #93C72A;
+}
+
+h3 {
+  font-size: 100px;
+  color: #CDD1C0;
+  text-align: left;
+  margin-bottom: .5em;
+}
+
+h4 {
+  font-size: 18vw;
+  color: #CDD1C0;
+  text-align: left;
+  margin-left: 10%;
+}
+
+h5 {
+  font-size: 4vw;
+  color: #CDD1C0;
+  text-align: right;
+  /*margin-right: 5%;*/
+  margin-top: 1vw;
+}
+
+a {
+	text-decoration: none;
+	color: #CDD1C0;
+}
+
+.container {
+	margin: 75px;
+}
+
+.nextpage {
+	float: right;
+	font-size: 200px;
+}
+
+input.input-box { 
+  color: #CDD1C0;
+  background: #242424;
+  border: none;
+  width: 900px;
+  height: 100px;
+  padding-left: 20px;
+  font-family: rodusround700;
+  font-size: 60px;
+}
+
+input.input-submit {
+  width: 100px;
+  height: 100px;
+  background: none;
+  border: none;
+  font-size: 75px;
+  font-family: rodusround700;
+  color: #CDD1C0;
+}
+
+form {
+  color: #CDD1C0;
+}
+
+table {
+  color: #93C72A;
+  font-family: rodusround700;
+  font-size: 2em;
+}
+
+td {
+  padding-right: 50px;
+  padding-bottom: 10px;
+}
+
+button{
+  border: 1px solid #3498db;
+  background: none;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-family: "montserrat";
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.8s;
+  position: relative;
+  overflow: hidden;
+}

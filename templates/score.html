@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <title>SCORE</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+    var timeTable = '{{ times|tojson }}'
+    var jsonTable = JSON.parse(timeTable)
+
+    for (var i in jsonTable) {
+        if (i < 5) {
+            console.log(jsonTable[i]['name'])
+           
+        }
+    }
+
+    function makeTable(tbody) {
+        var tr, td;
+        tbody = document.getElementById("bestTimes");
+        // loop through data source
+        for (var i = 1; i < 6; i++) {
+            tr = tbody.insertRow(tbody.rows.length);
+            td = tr.insertCell(tr.cells.length);
+            td.setAttribute("align", "center");
+            td.setAttribute("style", "color: #4FA88D");
+            td.innerHTML = i;
+            td = tr.insertCell(tr.cells.length);
+            td.innerHTML = jsonTable[i].time;
+            td = tr.insertCell(tr.cells.length);
+            td.setAttribute("style", "color: #CDD1C0");
+            td.innerHTML = jsonTable[i].name;
+        }
+    }
+
+    </script>
+</head>
+
+<body background="../static/img/trigrid20.jpg" onload="makeTable()">
+	<div class='container'>
+    	<h3> Best times </h3>
+        <table>
+            <tbody id="bestTimes"></tbody>
+        </table>
+        <h5><a href='/'>NEW GAME </a></h5>
+    </div>
+    </body>
+</body>
+ 
+</html>
