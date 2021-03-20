@@ -1,19 +1,36 @@
-from flask import Flask, render_template, request
-# from flask import *
-from flask_nav import Nav
-from flask_nav.elements import Navbar, Subgroup, View, Link, Text
+from flask import Flask
+from flask import request
+from flask import render_template
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import exc
+from sqlalchemy.exc import IntegrityError
+
+
 app = Flask(__name__)
-nav= Nav(app)
-import sqlite3
-from flask import g
-import json
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:login2-1@localhost/test'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
-nav.register_element('my_navbar', Navbar('thenav',
-	View ('Home', 'index')))
 
-@app.route('/')
-def home():
-	return render_template('home.html')
+def add_save_to_db(db):
+
+    def save(model):
+        try:
+            db.session.add(model)
+            db.session.commit()
+        except exc.IntegrityError as e:
+            db.session().rollback()
+            db.session.close()
+            return False, 'Duplicate ID'
+        return True, 'Created'
+    db.Model.save = save
+
+add_save_to_db(db)
+
+
+@app.route("/", methods=["GET"])
+def Home():
+    return render_template("home.html")
 
 @app.route('/index')
 def main():
@@ -63,11 +80,5 @@ def score():
 	return render_template('score.html', times = timeDict)
 
 
-if __name__ == "__main__":
-	conn = sqlite3.connect('gameTimeDatabase.db')
-	c = conn.cursor()
-	c.execute('''CREATE TABLE IF NOT EXISTS times (name, time)''')
-	conn.commit()
-
-	# app.debug = True
-	app.run(host = '0.0.0.0')
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000)
