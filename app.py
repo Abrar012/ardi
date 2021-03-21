@@ -42,14 +42,23 @@ def game():
 
 @app.route('/saveTime', methods = ['GET', 'POST'])
 def saveTime():
-	if request.method == 'POST':
-		global endTime
-		endTime = request.json
-		print (endTime)
-	return render_template('saveTime.html')
+    if request.method == 'POST':
+        from models import User
+        result = request.form.to_dict()
+        task = User(**result)
+        task.save()
+        return render_template('saveTime.html')
+    else:
+        pass
 
 @app.route('/score', methods = ['GET','POST'])
 def score():
+	if request.method == 'POST':
+		from models import UserDetails
+		result = request.form.to_dict()
+		task = UserDetails(**result)
+		task.save()
+
 	if request.method == 'POST':
 		global userName
 		userName = request.form['userName']
